@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messages | Happy 18th</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="back" href="home.html">← Home</a>
+<section class="page wide">
+  <h2>Messages 💌</h2>
+  <div class="mbtns" id="mb"></div>
+</section>
+<script src="common.js"></script>
+<script>
+/* ===== EDIT HERE: names and letters ===== */
+const MESSAGES=[
+ {from:"Mielle",text:"Dear you,\n\n Happy birthday, kie!    ⋆i hope you know that your presence has never frightened me, as someone who has always been scared of so many things. there’s just something about you that makes everything feel a little softer and a little less scary. i hope you know how much i appreciate that. i’m really glad i get to know you and have you in my life. i love chu, always and in all ways. 🩷 \n\nWith love,\nMielle"},
+ 
+ {from:"Erica",text:"Dear you,\n\nHappy Birthday KIEEEE! Official adult ka na talaga, pero kahit tumatanda na tayo, wala pa ring magbabago sa friendship natin. Super thankful ako sa lahat ng chika, tawanan, at support mo through everything. Wish ko lang talaga na makuha mo lahat ng blessings and happiness na deserve mo sa bagong chapter na ‘to. Remember na nandito lang ako lagi cheering for you—love you always kie! 💗\n\nWith love,\nErica"},
+
+ {from:"Ayessa",text:"Dear you,\n\nHappy 18th birthday, kiesha! wishing you all the best as you step into this new chapter of your life. always remember that I’m here for you through every joy and every challenge. even though we don’t get to spend as much time together as we used to, i’m still right here as your friend, ready to support you and cheer you on in every one of your victories. thank you for being such a loving friend and for bringing so much happiness to our friendship. these nearly five years of being friends mean the world to me and you’ve been such a wonderful part of my life too. please always remember that i'm still here for you. i love you so much, kiesha! have the happiest birthday!\n\nWith love,\nAyessa"},
+ 
+ {from:"Brylle",text:"Dear you,\n\n Happy 18th birthday! Meeting you was one of the best things that ever happened to me. You turned ordinary days into memories I'll keep forever. Thank you for listening, for laughing with me, and for staying when things got hard. A real friend is rare, and you are one of the truest I've ever had. As you step into adulthood, I hope you chase every dream and always remember you're never alone. Whatever comes next, I'll be cheering for you every step of the way. Here's to you, to us, and to so many more years of friendship. Always remember that I'm always here for you, no matter what. love u! \n\nWith love,\nBrylle"},
+ 
+ {from:"Kirsten",text:"Dear you,\n\n Happy birthday, pogi! best buddy ko 'to sa math kasi pareho tayong math wizard, tipong 8+7 nag lo-loading tayong dalawa, jk. I don't need to explain or recall every single detail of our friendship. all I know is that my high school years were so much better simply because you were there. stressing ang SHS, pero I'm glad na nandiyan kayo, kaya tawa pa rin ako nang tawa, mamamatay na ata ako no'n sa sakit ng tyan ko.  I wish nothing but the best for you— 'yun ay magkaroon ng good health at ma-pursue mo 'yung passion mo. At the end of the day, kahit hindi na tayo magkasama sa iisang classroom, naging pamilya ko na kayo, I'll always be in your corner cheering you on. \n\nWith love,\nKirsten"}
+];
+const TYPE_SPEED=70; // milliseconds per letter (bigger = slower)
+/* ======================================== */
+
+// each button gets its own message box directly under it
+let tt;
+MESSAGES.forEach(m=>{
+ const w=document.createElement('div');
+ const b=document.createElement('button');b.className='btn';b.textContent=m.from+"'s message 💌";
+ const p=document.createElement('div');p.className='paper';
+ b.onclick=()=>show(p,b,m.text);
+ w.append(b,p);$('mb').appendChild(w);
+});
+function show(p,b,t){
+ clearInterval(tt);
+ if(p.style.display==='block'){p.style.display='none';p.textContent='';return} // tap again = close
+ document.querySelectorAll('.paper').forEach(e=>{if(e!==p){e.style.display='none';e.textContent=''}});
+ p.style.display='block';p.className='paper';p.textContent='';
+ b.scrollIntoView({behavior:'smooth',block:'start'});
+ let i=0;
+ tt=setInterval(()=>{p.textContent+=t[i++];p.scrollTop=p.scrollHeight;
+  if(i>=t.length){clearInterval(tt);p.classList.add('done')}},TYPE_SPEED);
+}
+</script>
+</body>
+</html>

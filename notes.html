@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes | Happy 18th</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="back" href="home.html">← Home</a>
+<section class="page">
+  <h2>Notes 📝</h2>
+  <div class="grid g-note" id="ng"></div>
+</section>
+<script src="common.js"></script>
+<script>
+/* ===== EDIT HERE: up to 10 notes (t = title, x = text) ===== */
+const NOTES=[
+ {t:"NOTE 1: ERICA",x:"STAY TRUE SA SARILI MO, NO MATTER WHAT I LOVE CHU. "},
+ {t:"NOTE 2: ERICA",x:"MAG PAHINGA KA KUNG NAPAPAGOD, PERO HUWAG NA HUWAG SUSUKO, ALAM MO YAN, BABES. "},
+ {t:"NOTE 3: ERICA",x:"STAY TRUE SA SARILI MO, NO MATTER WHAT I LOVE CHU."},
+ 
+ {t:"NOTE 4: BRYLLE",x:"Be kind to yourself:  You don't have to be perfect to be loved. Rest when you're tired, and be as gentle with yourself as you are with others."},
+ 
+ {t:"NOTE 5: BRYLLE",x:"Your dreams matter:   Keep going, even when progress feels slow. Small steps still count, and the girl you are now is already making her future proud. "},
+ 
+ {t:"NOTE 6: BRYLLE",x:"You are never alone:   On your good days and your hard days, the people who love you are always just a message away. Don't be afraid to ask for help. "},
+ 
+ 
+ {t:"NOTE 7: AYESSA",x:"I'll stay by your side, even when the world feels heavy. "}, 
+ 
+ {t:"NOTE 8: AYESSA",x:"Always remember that you are loved by us."},
+ 
+ {t:"Note 9: KIRSTEN",x:"h'wag kang mape-pressure sa mga bagay, you don't have to prove anything to anyone. "},
+ {t:"Note 10: KIRSTEN",x:"kung may na-miss out kang oppurtunity, maybe it isn't for you dahil may bigger blessing pang dadating, we just have to wait:) "}, 
+  {t:"Note 11: KIRSTEN",x:"We don't talk or hang out like we used to, but that doesn't mean you can't lean on me anymore, we're your friends for a reason, kie"},  
+  {t:"NOTE 12: MIELLE",x:"I’m glad you shared the 1st day of october with me, as someone who was born on the 30th day of october. ₊˚ ⊹"}, 
+  
+   {t:"NOTE 13: MIELLE",x:"I love chu, kieshacakes sugarplum pumpkin honeybunch boo sweetie pie! (˶˃ ᵕ ˂˶)"},
+    {t:"NOTE 14: MIELLE",x:"I am, and will always be, here for you, kie!  𑣲"},
+
+];
+/* =========================================================== */
+
+NOTES.forEach(n=>{
+ const d=document.createElement('div');d.className='note';
+ d.style.setProperty('--r',(Math.random()*4-2)+'deg');
+ d.innerHTML=`<b>${n.t}</b>${n.x}`;
+ $('ng').appendChild(d);
+});
+</script>
+</body>
+</html>

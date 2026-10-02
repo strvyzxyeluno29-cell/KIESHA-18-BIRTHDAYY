@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music | Happy 18th</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="back" href="home.html">← Home</a>
+<section class="page">
+  <h2>Our Playlist 🎵</h2>
+  <div id="songs"></div>
+</section>
+<div id="player"><div class="pi">
+  <div class="pinfo"><div class="cov" id="pc"></div><div><div id="pt" style="font-weight:600"></div><small id="pa" style="color:var(--mut)"></small></div></div>
+  <div class="ctrl">
+    <div><button onclick="step(-1)">⏮</button><button class="pp" id="pp" onclick="toggle()">▶</button><button onclick="step(1)">⏭</button></div>
+    <div class="bar"><span id="cur">0:00</span><input type="range" id="seek" value="0" min="0" max="100" step="0.1"><span id="dur">0:00</span></div>
+  </div>
+</div></div>
+<script src="common.js"></script>
+<script>
+/* ===== EDIT HERE: 12 songs =====
+   src   = link to an .mp3 file (or a file in the same folder, e.g. "songs/one.mp3")
+   cover = link to an image (optional) */
+const SONGS=[
+ {title:"Count On Me",artist:"Bruno Mars",src:"song-2.mp3",cover:"cover-B.jpeg"}, 
+ 
+ {title:"With a Little Help from My Friends",artist:"The Beatles",src:"song-3.mp3",cover:"cover-C.jpeg"},
+ 
+ {title:"Umaga",artist:"The Juans",src:"song-4.mp3",cover:"cover-D.jpeg"}
+ 
+ ,{title:"Best Part",artist:"Daniel Ceasar",src:"song-5.mp3",cover:"cover-E.jpg"},
+ 
+ {title:"Sure Thing",artist:"Miguel",src:"song-6.mp3",cover:"cover-F.jpeg"}
+ 
+ ,{title:"Birds of Feather",artist:"Billie Eilish",src:"song-7.mp3",cover:"cover-G.jpeg"},
+ 
+ {title:"Don't Look Back in Anger",artist:"Oasis",src:"song-8.mp3",cover:"cover-H.jpeg"}
+ 
+ ,{title:"Always Forever",artist:"Cults",src:"song-9.mp3",cover:"cover-I.jpeg"},
+ 
+ {title:"Huwag Kang Matakot",artist:"Eraserheads",src:"song-10.mp3",cover:"cover-J.jpeg"}
+ 
+ ,{title:"Baby 123",artist:"RAPROJECT SIX",src:"song-11.mp3",cover:"cover-K.jpeg"},
+
+ {title:"Ocean & Engines",artist:"Niki",src:"song-12.mp3",cover:"cover-L.jpeg"}
+ 
+ ,{title:"With A Smile",artist:"Eraserheads",src:"song-13.mp3",cover:"cover-M.jpeg"}, 
+ 
+ {title:"Anyone Else But You",artist:"The Modly Peaches",src:"song-14.mp3",cover:"cover-N.jpeg"}, 
+ 
+ {title:"Everyone Adores You",artist:"Matt Maltese",src:"song-15.mp3",cover:"cover-O.jpeg"}, 
+ 
+ {title:"Milky Way",artist:"The Ridleys",src:"song-16.mp3",cover:"cover-P.jpeg"}
+];
+/* =============================== */
+
+const au=new Audio();let cur=-1,playing=false,sim=0,simT;
+const fmt=s=>isNaN(s)?'0:00':Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+SONGS.forEach((s,i)=>{const d=document.createElement('div');d.className='song';d.id='s'+i;
+ d.innerHTML=`<div class="n">${i+1}</div><div class="cov" style="${s.cover?`background-image:url(${s.cover})`:''}">${s.cover?'':'♪'}</div><div><div class="t">${s.title}</div><small>${s.artist}</small></div>`;
+ d.onclick=()=>play(i);$('songs').appendChild(d)});
+function play(i){cur=i;const s=SONGS[i];$('player').style.display='block';
+ document.querySelectorAll('.song').forEach(e=>e.classList.remove('on'));$('s'+i).classList.add('on');
+ $('pt').textContent=s.title;$('pa').textContent=s.artist;
+ $('pc').style.backgroundImage=s.cover?`url(${s.cover})`:'';$('pc').textContent=s.cover?'':'♪';
+ clearInterval(simT);sim=0;
+ if(s.src){au.src=s.src;au.play().catch(()=>{})}
+ else{au.pause();au.removeAttribute('src');simT=setInterval(()=>{if(playing){sim+=.25;upd(sim,200);if(sim>=200)step(1)}},250)}
+ playing=true;$('pp').textContent='⏸'}
+function toggle(){if(cur<0)return play(0);playing=!playing;$('pp').textContent=playing?'⏸':'▶';
+ if(au.src)playing?au.play():au.pause()}
+function step(d){play((cur+d+SONGS.length)%SONGS.length)}
+function upd(c,t){$('seek').value=t?c/t*100:0;$('cur').textContent=fmt(c);$('dur').textContent=fmt(t)}
+au.onerror=()=>{if(au.getAttribute('src'))alert('Cannot load this song file:\n'+au.getAttribute('src')+'\n\nCheck that the file name and folder match exactly.')};
+au.ontimeupdate=()=>upd(au.currentTime,au.duration);au.onended=()=>step(1);
+$('seek').oninput=e=>{if(au.src&&au.duration)au.currentTime=e.target.value/100*au.duration;else sim=e.target.value/100*200}
+</script>
+</body>
+</html>

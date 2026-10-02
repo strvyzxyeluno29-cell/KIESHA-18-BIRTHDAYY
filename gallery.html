@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery | Happy 18th</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="back" href="home.html">← Home</a>
+<section class="page">
+  <h2>Gallery 📸</h2>
+  <div class="grid g-pic" id="pg"></div>
+</section>
+<script src="common.js"></script>
+<script>
+/* ===== EDIT HERE: 50 photo slots =====
+   Put an image link (or a file path like "photos/1.jpg") in a slot.
+   Example: PHOTOS[0]="https://example.com/photo.jpg"; */
+const PHOTOS=Array(51).fill("");
+PHOTOS[0]="pic-1.jpeg" 
+PHOTOS[1]="pic-2.jpeg" 
+PHOTOS[2]="pic-3.jpeg" 
+PHOTOS[3]="pic-4.jpeg" 
+PHOTOS[4]="pic-5.jpeg" 
+PHOTOS[5]="pic-6.jpeg" 
+PHOTOS[6]="pic-7.jpeg" 
+PHOTOS[7]="pic-8.jpeg" 
+PHOTOS[8]="pic-9.jpeg" 
+PHOTOS[9]="pic-10.jpeg" 
+PHOTOS[10]="pic-11.jpeg" 
+PHOTOS[11]="pic-12.jpeg" 
+PHOTOS[12]="pic-13.jpeg" 
+PHOTOS[13]="pic-14.jpeg" 
+PHOTOS[14]="pic-A.jpeg"
+PHOTOS[15]="pic-B.jpg" 
+PHOTOS[16]="pic-C.jpeg" 
+PHOTOS[17]="pic-D.jpeg" 
+PHOTOS[18]="pic-E.jpeg" 
+PHOTOS[19]="pic-F.jpeg" 
+PHOTOS[20]="pic-G.jpeg" 
+PHOTOS[21]="pic-H.jpeg" 
+PHOTOS[22]="pic-I.jpeg" 
+PHOTOS[23]="pic-J.jpeg" 
+PHOTOS[24]="pic-K.jpeg" 
+PHOTOS[25]="pic-L.jpeg" 
+PHOTOS[26]="pic-O.jpeg" 
+PHOTOS[27]="pic-P.jpeg" 
+PHOTOS[28]="pic-Q.jpeg" 
+PHOTOS[29]="pic-R.jpeg" 
+PHOTOS[30]="pic-S.jpeg" 
+PHOTOS[31]="pic-T.jpeg" 
+PHOTOS[32]="pic-U.jpeg" 
+PHOTOS[33]="pic-V.jpeg" 
+PHOTOS[34]="pic-W.jpeg" 
+PHOTOS[35]="pic-15.jpeg" 
+PHOTOS[36]="pic-16.jpeg" 
+PHOTOS[37]="pic-17.jpeg"
+PHOTOS[38]="pic-18.jpeg" 
+PHOTOS[39]="pic-19.jpeg" 
+PHOTOS[40]="pic-20.jpeg" 
+PHOTOS[41]="pic-21.jpeg"
+PHOTOS[42]="pic-22.jpeg"
+PHOTOS[43]="pic-23.jpeg" 
+PHOTOS[44]="pic-24.jpeg" 
+PHOTOS[45]="pic-25.jpeg" 
+PHOTOS[46]="pic-26.jpeg" 
+PHOTOS[47]="pic-27.jpeg" 
+PHOTOS[48]="pic-28.jpeg" 
+PHOTOS[49]="pic-29.jpeg" 
+PHOTOS[50]="pic-30.jpeg"
+
+
+/* ===================================== */
+
+PHOTOS.forEach((u,i)=>{
+ const d=document.createElement('div');d.className='slot';
+ d.innerHTML=u?`<img loading="lazy" src="${u}" alt="Photo ${i+1}">`:`📷 ${i+1}`;
+ if(u)d.onclick=()=>openM(`<img src="${u}" alt="Photo ${i+1}">`);
+ $('pg').appendChild(d);
+});
+</script>
+</body>
+</html>

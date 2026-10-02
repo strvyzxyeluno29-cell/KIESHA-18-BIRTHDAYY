@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy 18th Birthday</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="loginPage" class="page center">
+  <div class="big18">18</div>
+  <h1 style="font-size:2.6rem">Happy Birthday!</h1>
+  <p style="color:var(--mut)">A little surprise made just for you ✨</p>
+  <div class="box">
+    <label for="nm">Name:</label><input id="nm" placeholder="Enter your name">
+    <label for="bd">Birthday:</label><input id="bd" type="date">
+    <button class="btn w" onclick="proceed()">Proceed 💙</button>
+  </div>
+</section>
+
+<!-- all other pages open inside this frame, so the music is never interrupted -->
+<iframe id="app" style="display:none;position:fixed;inset:0;width:100%;height:100%;border:0;z-index:5;background:#04060d"></iframe>
+
+<script src="common.js"></script>
+<script>
+/* ===== EDIT HERE: background music (invisible; plays on every page except Music) ===== */
+const BGM_SRC="song-1.mp3";
+const BGM_VOLUME=1; // 0 to 1
+/* ==================================================================================== */
+
+try{startFireworks()}catch(e){}
+const bgm=new Audio(BGM_SRC);bgm.loop=true;bgm.volume=BGM_VOLUME;
+bgm.onerror=()=>alert('Cannot load music: '+BGM_SRC);
+let started=false;
+
+function proceed(){
+  const n=$('nm').value.trim(),b=$('bd').value;
+  if(!n||!b){alert('Please fill in your name and birthday 💙');return}
+  try{localStorage.setItem('b18name',n)}catch(e){}
+  bgm.play().then(()=>{started=true}).catch(()=>{}); // starts automatically on this tap
+  confetti();
+  setTimeout(()=>{
+    $('loginPage').style.display='none';
+    $('app').src='home.html';$('app').style.display='block';
+  },1200);
+}
+
+// pause the music on the Music page, resume it on every other page
+addEventListener('message',e=>{
+  const p=e.data&&e.data.b18page;if(!p)return;
+  if(p==='music.html')bgm.pause();
+  else if(bgm.paused)bgm.play().then(()=>{started=true}).catch(()=>{});
+});
+</script>
+</body>
+</html>

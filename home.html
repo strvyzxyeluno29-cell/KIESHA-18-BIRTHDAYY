@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home | Happy 18th</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="back" href="index.html" target="_top">← Login</a>
+<section class="page center">
+  <div class="big18" style="font-size:4.5rem">18</div>
+  <h1 id="hi" style="font-size:2.8rem">Happy 18th! 🎉</h1>
+  <p style="color:var(--mut)">Choose something to open 🎀</p>
+  <div class="menu">
+    <a class="btn" href="messages.html"><span>💌</span>Messages</a>
+    <a class="btn" href="music.html"><span>🎵</span>Music</a>
+    <a class="btn" href="gallery.html"><span>📸</span>Gallery</a>
+    <a class="btn" href="notes.html"><span>📝</span>Notes</a>
+  </div>
+</section>
+<script src="common.js"></script>
+<script>
+try{const n=getName();if(n)document.getElementById('hi').textContent='Happy 18th, '+n+'! 🎉'}catch(e){}
+try{startFireworks()}catch(e){}
+</script>
+</body>
+</html>
